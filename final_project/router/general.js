@@ -21,17 +21,20 @@ public_users.post("/register", (req,res) => {
   res.status(201).json({ message: "User successfully registered" });
 });
 
+
 // Get the book list available in the shop
 public_users.get('/',function (req, res) {
   //Write your code here
   res.json(books);});
-
+  
 
 // Get book details based on ISBN
 public_users.get('/isbn/:isbn',function (req, res) {
   //Write your code here
   const isbn = req.params.isbn;
-    const book = books[isbn];
+  
+  const book = books[isbn];
+
   if (book) {
       res.json(book);
   } else {
@@ -43,8 +46,11 @@ public_users.get('/isbn/:isbn',function (req, res) {
 public_users.get('/author/:author',function (req, res) {
   //Write your code here
   const author = req.params.author;
-    const booksArray = Object.values(books);
+  
+  const booksArray = Object.values(books);
+
   const booksByAuthor = booksArray.filter(book => book.author === author);
+
   if (booksByAuthor.length > 0) {
       res.json(booksByAuthor);
   } else {
@@ -63,13 +69,14 @@ public_users.get('/title/:title',function (req, res) {
     } else {
         res.status(404).json({ message: "Books by title not found" });
     }
-});
+ });
 
 //  Get book review
-public_users.get('/reviews/:isbn',async (req, res) => {
+public_users.get('/review/:isbn',async (req, res) => {
   //Write your code here
       const isbn = req.params.isbn;
       await res.send(JSON.stringify(books[isbn].review),null,4);
+    
   });
 
 module.exports.general = public_users;

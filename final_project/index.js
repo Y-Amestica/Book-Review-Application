@@ -28,7 +28,7 @@ if(req.session.authorization) {
  }
 });
  
-const PORT =5004;
+const PORT =5005;
 
 app.use("/customer", customer_routes);
 app.use("/", genl_routes);
