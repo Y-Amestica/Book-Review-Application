@@ -77,3 +77,99 @@ public_users.get('/reviews/:isbn',async (req, res) => {
       });
 
 module.exports.general = public_users;
+
+
+
+/*TASK 10, 11, 12*/
+
+/*const express = require('express');
+const axios = require('axios');
+let books = require("./booksdb.js");
+let isValid = require("./auth_users.js").isValid;
+let users = require("./auth_users.js").users;
+const public_users = express.Router();
+
+// Definir la URL base de la API de libros
+const baseUrl = 'http://your-api-url/books';
+
+// Function para obtener todos los libros usando Axios con async-await
+const getAllBooks = async () => {
+  try {
+    const response = await axios.get(baseUrl);
+    return response.data;
+  } catch (error) {
+    throw new Error("Error fetching books data");
+  }
+};
+
+// Function para obtener los detalles del libro por ISBN usando Axios con async-await
+const getBookByISBN = async (isbn) => {
+  try {
+    const response = await axios.get(`${baseUrl}/isbn/${isbn}`);
+    return response.data;
+  } catch (error) {
+    throw new Error("Error fetching book details by ISBN");
+  }
+};
+
+// Function para obtener libros por autor usando Axios con async-await
+const getBooksByAuthor = async (author) => {
+  try {
+    const response = await axios.get(`${baseUrl}/author/${author}`);
+    return response.data;
+  } catch (error) {
+    throw new Error("Error fetching books by author");
+  }
+};
+
+public_users.post("/register", (req, res) => {
+  // Escriba su código aquí
+  const { username, password } = req.body;
+  if (!username || !password) {
+    return res.status(400).json({ message: "Username and password are required" });
+  }
+  if (!isValid(username)) {
+    return res.status(400).json({ message: "Invalid username format" });
+  }
+  if (users.find(user => user.username === username)) {
+    return res.status(400).json({ message: "Username already exists" });
+  }
+  users.push({ username, password });
+  res.status(201).json({ message: "User successfully registered" });
+});
+
+
+// Obtener la lista de libros disponibles en la tienda usando async-await con Axios
+public_users.get('/', async function (req, res) {
+  try {
+    const allBooks = await getAllBooks();
+    res.json(allBooks);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// Obtener detalles del libro basado en el ISBN usando async-await con Axios
+public_users.get('/isbn/:isbn', async function (req, res) {
+  try {
+    const isbn = req.params.isbn;
+    const book = await getBookByISBN(isbn);
+    res.json(book);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// Obtener detalles del libro basado en el autor usando async-await con Axios
+public_users.get('/author/:author', async function (req, res) {
+  try {
+    const author = req.params.author;
+    const booksByAuthor = await getBooksByAuthor(author);
+    res.json(booksByAuthor);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+module.exports.general = public_users;
+*/
