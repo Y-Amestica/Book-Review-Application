@@ -32,9 +32,7 @@ public_users.get('/',function (req, res) {
 public_users.get('/isbn/:isbn',function (req, res) {
   //Write your code here
   const isbn = req.params.isbn;
-  
-  const book = books[isbn];
-
+    const book = books[isbn];
   if (book) {
       res.json(book);
   } else {
@@ -72,11 +70,10 @@ public_users.get('/title/:title',function (req, res) {
  });
 
 //  Get book review
-public_users.get('/review/:isbn',async (req, res) => {
+public_users.get('/reviews/:isbn',async (req, res) => {
   //Write your code here
       const isbn = req.params.isbn;
       await res.send(JSON.stringify(books[isbn].review),null,4);
-    
-  });
+      });
 
 module.exports.general = public_users;

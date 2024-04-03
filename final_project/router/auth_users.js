@@ -66,24 +66,22 @@ regd_users.post("/login", (req,res) => {
     req.session.authorization = {
         accessToken
     };
-
     res.send("User logged in Successfully");
 });
 
-
 // Add a book review
-regd_users.put("/auth/review/:isbn", (req, res) => {
+regd_users.put("/auth/reviews/:isbn", (req, res) => {
   //Write your code here
   let userd = req.session.username;
   let ISBN = req.params.isbn;
-  let details = req.query.review;
-  let rev = {user:userd,review:details}
+  let details = req.query.reviews;
+  let rev = {user:userd,reviews:details}
   books[ISBN].reviews = rev;
   return res.status(201).json({message:"Review added successfully"})
   
 });
 
-regd_users.delete("/auth/review/:isbn", (req, res) => {
+regd_users.delete("/auth/reviews/:isbn", (req, res) => {
     let ISBN = req.params.isbn;
     books[ISBN].reviews = {}
     return res.status(200).json({messsage:"Review has been deleted"})
