@@ -171,5 +171,15 @@ public_users.get('/author/:author', async function (req, res) {
   }
 });
 
+// Function para obtener libros por título usando Axios con async-await
+const getBooksByTitle = async (title) => {
+  try {
+    const response = await axios.get(`${baseUrl}/title/${title}`);
+    return response.data;
+  } catch (error) {
+    throw new Error("Error fetching books by title");
+  }
+};
+
 module.exports.general = public_users;
 */
